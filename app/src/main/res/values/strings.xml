@@ -1,6 +1,5 @@
 <resources>
-    <string name="google_maps_key">AIzaSyC3lbjVboIXttDNYtfVTumMBmSlpXRbLKI</string>
-
+    <string name="googlemapskey">AIzaSyC3lbjVboIXttDNYtfVTumMBmSlpXRbLKI</string>
     <string name="app_name">Peoplemon</string>
     <string name="register">Register</string>
     <string name="confirm_password">Confirm Password</string>
@@ -9,7 +8,7 @@
     <string name="fullName">Username</string>
     <string name="login">Login</string>
     <string name="login_failed">Login Failed</string>
-    <string name="empty_username_or_password">Please complete all fields.</string>
+    <string name="empty_username_or_password">Please complete all fields</string>
     <string name="valid_email">Please enter a valid email</string>
     <string name="passwords_dont_match">Your passwords do not match</string>
     <string name="registration_failed">Registration Failed</string>
@@ -19,8 +18,8 @@
     <string name="save">Save</string>
     <string name="error_retrieving_image">Error Retrieving Image</string>
     <string name="check_in_failed">Check In Failed</string>
-    <string name="checked_in">You Checked In!</string>
-    <string name="run_away">They Ran Away!</string>
+    <string name="checked_in">checked in</string>
+    <string name="user_got_away">User got away!</string>
     <string name="change_picture">Change Picture</string>
     <string name="user">user</string>
     <string name="location_failed">Location services failed</string>
@@ -31,10 +30,11 @@
     <string name="connection_failed">Connection Failed</string>
     <string name="list_failed">Error retrieving Peoplemon list</string>
     <string name="profile_info_error">Error Retrieving User Info</string>
-    <string name="got_em">You got \'em!</string>
-    <string name="cant_catch">You can\'t catch yourself!</string>
-    <string name="ran_away">They ran away!</string>
-    <string name="error_retreiving_image">Error Retrieving Image</string>
+    <string name="caught_user">Catch successful!</string>
+    <string name="cant_catch">Unable to catch yourself</string>
+    <string name="image_error">Error Retrieving Image</string>
     <string name="username">UserName</string>
     <string name="checkinNearBy">Checking for nearby PeopleMon</string>
+    <string name="failure_user_info">Failure retrieving User Info</string>
+    <string name="unsuccess_info_retrieve">Unsuccessful User Info Retrieval</string>
 </resources>

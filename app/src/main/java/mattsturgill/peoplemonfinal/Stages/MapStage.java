@@ -20,10 +20,7 @@ public class MapStage extends IndexedStage{
         this.rigger = new SlideRigger(context);
     }
 
-    public MapStage(){
-        this(PeoplemonApplication.getInstance());
-
-    }
+    public MapStage(){this(PeoplemonApplication.getInstance());}
 
     @Override
     public int getLayoutId()  {

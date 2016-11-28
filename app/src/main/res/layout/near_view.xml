@@ -5,14 +5,18 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/list_near_title"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Nearby Users:"/>
+        android:text="List of near PeopleMon"
+        android:textSize="15dp"
+        android:textAlignment="center"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/nearby_recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:scrollbars="vertical">
     </android.support.v7.widget.RecyclerView>
 
 </mattsturgill.peoplemonfinal.Views.NearView>

@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (UserStore.getInstance().getToken() == null || UserStore.getInstance().getTokenExpiration() == null) {
             History newHistory = History.single(new LoginStage());
-            flow.setHistory(newHistory, Flow.Direction.REPLACE); //no visual transition
+            flow.setHistory(newHistory, Flow.Direction.REPLACE);
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -167,13 +167,13 @@ public class MainActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
 
                 } else {
-                    Toast.makeText(context, R.string.profile_info_error + ": " + response.code(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, getString(R.string.unsuccess_info_retrieve) + ": " + response.code(), Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(context, R.string.profile_info_error, Toast.LENGTH_LONG).show();
+                Toast.makeText(context, R.string.failure_user_info, Toast.LENGTH_LONG).show();
             }
         });
     }

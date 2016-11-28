@@ -4,6 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/list_caught_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="List of Caught PeopleMon"
+        android:textSize="15dp"
+        android:textAlignment="center"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/caught_recycler"
         android:layout_width="match_parent"

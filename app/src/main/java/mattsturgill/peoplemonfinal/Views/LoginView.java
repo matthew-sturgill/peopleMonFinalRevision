@@ -34,10 +34,10 @@ import static mattsturgill.peoplemonfinal.PeoplemonApplication.getMainFlow;
 public class LoginView extends LinearLayout {
     private Context context;
 
-    @Bind(R.id.login_user_name_ET)
+    @Bind(R.id.login_username)
     EditText userNameField;
 
-    @Bind(R.id.login_password_ET)
+    @Bind(R.id.login_password)
     EditText passwordField;
 
     @Bind(R.id.login_button)
@@ -49,14 +49,13 @@ public class LoginView extends LinearLayout {
     @Bind(R.id.spinner)
     ProgressBar spinner;
 
-
     public LoginView(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
     }
 
     @Override
-    protected void onFinishInflate() { //inflates our container
+    protected void onFinishInflate() {
         super.onFinishInflate();
         ButterKnife.bind(this);
     }
@@ -80,7 +79,6 @@ public class LoginView extends LinearLayout {
         String username = userNameField.getText().toString();
         String password = passwordField.getText().toString();
         String grantType = "password";
-
 
         if (username.isEmpty() || password.isEmpty()) {
             Toast.makeText(context, R.string.empty_username_or_password, Toast.LENGTH_LONG).show();
@@ -109,7 +107,6 @@ public class LoginView extends LinearLayout {
                         Toast.makeText(context, context.getResources().getString(R.string.login_failed) + ": " + response.code(), Toast.LENGTH_LONG).show();
                     }
                 }
-
                 @Override
                 public void onFailure(Call<Authorization> call, Throwable t) {
                     resetView();

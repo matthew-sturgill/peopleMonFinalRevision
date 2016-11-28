@@ -11,7 +11,8 @@
         android:layout_gravity="center_horizontal"
         android:ems="10"
         android:hint="@string/e_mail_address"
-        android:inputType="textEmailAddress"/>
+        android:inputType="textEmailAddress"
+        android:layout_marginTop="50dp"/>
     <EditText
         android:id="@+id/user_name"
         android:layout_width="300dp"

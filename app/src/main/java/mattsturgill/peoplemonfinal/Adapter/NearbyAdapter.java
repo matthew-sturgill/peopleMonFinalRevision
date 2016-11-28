@@ -20,23 +20,21 @@ import mattsturgill.peoplemonfinal.R;
 
 public class NearbyAdapter extends RecyclerView.Adapter<NearbyAdapter.NearbyHolder> {
     private Context context;
-    public ArrayList<User> nearbyUsers;
+    public ArrayList<User> nearUsers;
 
-
-    public NearbyAdapter(ArrayList<User> nearbyUsers, Context context) {
-        this.nearbyUsers = nearbyUsers;
+    public NearbyAdapter(ArrayList<User> nearUsers, Context context) {
+        this.nearUsers = nearUsers;
         this.context = context;
     }
 
     @Override
     public void onBindViewHolder(NearbyHolder holder, int position) {
-        User user = nearbyUsers.get(position);
+        User user = nearUsers.get(position);
         holder.bindUser(user);
-
     }
 
     @Override
-    public int getItemCount() {return nearbyUsers == null ? 0 : nearbyUsers.size();
+    public int getItemCount() {return nearUsers == null ? 0 : nearUsers.size();
     }
 
     @Override
@@ -46,11 +44,10 @@ public class NearbyAdapter extends RecyclerView.Adapter<NearbyAdapter.NearbyHold
         return new NearbyHolder(inflatedView);
     }
 
-    class NearbyHolder extends RecyclerView.ViewHolder { //populates view
+    class NearbyHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.nearby_user_name_field)
+        @Bind(R.id.nearby_user_name)
         TextView nearbyNameField;
-
 
         public NearbyHolder(View itemView) {
             super(itemView);
@@ -58,9 +55,7 @@ public class NearbyAdapter extends RecyclerView.Adapter<NearbyAdapter.NearbyHold
         }
 
         public void bindUser(User user) {
-
             nearbyNameField.setText(user.getUserName());
         }
     }
-
 }

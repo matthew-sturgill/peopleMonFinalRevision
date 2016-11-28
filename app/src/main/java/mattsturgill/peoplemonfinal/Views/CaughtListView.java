@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -31,6 +32,9 @@ public class CaughtListView extends RelativeLayout {
     @Bind(R.id.caught_recycler)
     RecyclerView recyclerView;
 
+    @Bind(R.id.list_caught_title)
+    TextView liastCaughtTitle;
+
     public CaughtListView(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
@@ -53,7 +57,6 @@ public class CaughtListView extends RelativeLayout {
         restClient.getApiService().caught().enqueue(new Callback<User[]>() {
             @Override
             public void onResponse(Call<User[]> call, Response<User[]> response) {
-                // Is the server response between 200 to 299
                 if (response.isSuccessful()) {
                     peopleCaughtAdapter.caughtUsers = new ArrayList<>(Arrays.asList(response.body()));
                     for (User user : peopleCaughtAdapter.caughtUsers) {
@@ -64,7 +67,6 @@ public class CaughtListView extends RelativeLayout {
                     Toast.makeText(context, R.string.profile_info_error + ": " + response.code(), Toast.LENGTH_LONG).show();
                 }
             }
-
             @Override
             public void onFailure(Call<User[]> call, Throwable t) {
                 Toast.makeText(context, R.string.profile_info_error, Toast.LENGTH_LONG).show();

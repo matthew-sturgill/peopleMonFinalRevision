@@ -41,6 +41,7 @@ import mattsturgill.peoplemonfinal.Network.RestClient;
 import mattsturgill.peoplemonfinal.PeoplemonApplication;
 import mattsturgill.peoplemonfinal.R;
 import mattsturgill.peoplemonfinal.Stages.CaughtListStage;
+import mattsturgill.peoplemonfinal.Stages.NearStage;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -64,10 +65,13 @@ public class MapPageView extends RelativeLayout implements OnMapReadyCallback,
     @Bind(R.id.googleMapView)
     MapView map;
 
-    @Bind(R.id.checkInButton)
-    FloatingActionButton radarFAB;
+    @Bind(R.id.list_near_peopleMon)
+    FloatingActionButton listNearPeopleMonFAB;
 
-    @Bind(R.id.caught_fab)
+    @Bind(R.id.checkInButton)
+    FloatingActionButton checkInFAB;
+
+    @Bind(R.id.caught_list_button)
     FloatingActionButton caughtFAB;
 
     public MapPageView(Context context, AttributeSet attrs) {
@@ -93,6 +97,21 @@ public class MapPageView extends RelativeLayout implements OnMapReadyCallback,
         mGoogleApiClient.connect();
     }
 
+    Runnable checkForLocationChange = new Runnable() {
+        @Override
+        public void run() {
+            try {
+                mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+
+                if (mLastLocation != null) {
+                    checkInLocation();
+                }
+            } catch (SecurityException e) {
+                e.printStackTrace();
+            }
+        }
+    };
+
     @Override
     public void onConnected(@Nullable Bundle bundle) {handler.post(checkForLocationChange);}
 
@@ -101,31 +120,6 @@ public class MapPageView extends RelativeLayout implements OnMapReadyCallback,
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {}
-
-    @Override
-    public boolean onMarkerClick(final Marker marker) {
-        RestClient restClient = new RestClient();
-        restClient.getApiService().catchUser(marker.getTitle(), Constants.radiusInMeters).enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                if (response.isSuccessful()) {
-                    Toast.makeText(context, R.string.got_em, Toast.LENGTH_SHORT).show();
-                    marker.remove();
-//                    caughtUsers();
-                } else {
-                    Toast.makeText(context, R.string.cant_catch, Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(context, R.string.ran_away, Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
-        return true;
-    }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -144,6 +138,30 @@ public class MapPageView extends RelativeLayout implements OnMapReadyCallback,
         mMap.setOnMarkerClickListener(this);
     }
 
+    @Override
+    public boolean onMarkerClick(final Marker marker) {
+        RestClient restClient = new RestClient();
+        restClient.getApiService().catchUser(marker.getTitle(), Constants.radiusInMeters).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(context, R.string.caught_user, Toast.LENGTH_SHORT).show();
+                    marker.remove();
+                } else {
+                    Toast.makeText(context, R.string.cant_catch, Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(context, R.string.user_got_away, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        return true;
+    }
+
     public void checkForNearby() {
         final RestClient restClient = new RestClient();
         restClient.getApiService().nearBy(Constants.radiusInMeters).enqueue(new Callback<User[]>() {
@@ -151,7 +169,6 @@ public class MapPageView extends RelativeLayout implements OnMapReadyCallback,
             public void onResponse(Call<User[]> call, Response<User[]> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(context, R.string.checkinNearBy, Toast.LENGTH_SHORT).show();
-
                     peopleMon = new ArrayList<>(Arrays.asList(response.body()));
 
                     for (final User user : peopleMon) {
@@ -185,38 +202,21 @@ public class MapPageView extends RelativeLayout implements OnMapReadyCallback,
                     Toast.makeText(context, R.string.no_peoplemon_near_you, Toast.LENGTH_SHORT).show();
                 }
             }
-
             @Override
             public void onFailure(Call<User[]> call, Throwable t) {
                 Toast.makeText(context, R.string.find_user_failed, Toast.LENGTH_SHORT).show();
-
             }
         });
     }
 
-    @OnClick(R.id.caught_fab)
-    public void caughtView() {
+    @OnClick(R.id.list_near_peopleMon)
+    public void nearView() {
         Flow flow = PeoplemonApplication.getMainFlow();
         History newHistory = flow.getHistory().buildUpon()
-                .push(new CaughtListStage())
+                .push(new NearStage())
                 .build();
-        flow.setHistory(newHistory, Flow.Direction.FORWARD);
+        flow.setHistory(newHistory, Flow.Direction.REPLACE);
     }
-
-    Runnable checkForLocationChange = new Runnable() {
-        @Override
-        public void run() {
-                try {
-                    mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-
-                    if (mLastLocation != null) {
-                        checkInLocation();
-                    }
-                } catch (SecurityException e) {
-                    e.printStackTrace();
-                }
-            }
-    };
 
     @OnClick(R.id.checkInButton)
     public void checkInLocation() {
@@ -243,5 +243,14 @@ public class MapPageView extends RelativeLayout implements OnMapReadyCallback,
                 Toast.makeText(context, R.string.check_in_failed, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @OnClick(R.id.caught_list_button)
+    public void caughtView() {
+        Flow flow = PeoplemonApplication.getMainFlow();
+        History newHistory = flow.getHistory().buildUpon()
+                .push(new CaughtListStage())
+                .build();
+        flow.setHistory(newHistory, Flow.Direction.FORWARD);
     }
 }

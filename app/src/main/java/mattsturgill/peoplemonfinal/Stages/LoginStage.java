@@ -13,7 +13,6 @@ import mattsturgill.peoplemonfinal.Riggers.SlideRigger;
  */
 
 public class LoginStage extends IndexedStage{
-
     private final SlideRigger rigger;
 
     public LoginStage(Application context){

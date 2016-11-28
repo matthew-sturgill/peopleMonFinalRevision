@@ -75,7 +75,6 @@ public class RegisterView extends LinearLayout{
         String apiKey = "iOSandroid301november2016";
         String avatarBase64 = "pokemon52.png";
 
-
         if (username.isEmpty() || password1.isEmpty() || password2.isEmpty() || email.isEmpty()) {
             Toast.makeText(context, R.string.empty_username_or_password, Toast.LENGTH_LONG).show();
 
@@ -103,12 +102,10 @@ public class RegisterView extends LinearLayout{
                         Toast.makeText(context, R.string.registration_failed + ": " + response.code(), Toast.LENGTH_LONG).show();
                     }
                 }
-
                 @Override
                 public void onFailure(Call<Void> call, Throwable t) {
                     resetView();
                     Toast.makeText(context, R.string.registration_failed, Toast.LENGTH_LONG).show();
-
                 }
             });
         }

@@ -25,47 +25,23 @@ public class Authorization {
     @SerializedName(".expires")
     private Date expiration;
 
+    public String getGrantType() {return grantType;}
 
+    public void setGrantType(String grantType) {this.grantType = grantType;}
 
+    public String getUsername() {return username;}
 
+    public void setUsername(String username) {this.username = username;}
 
-    public String getGrantType() {
-        return grantType;
-    }
+    public String getPassword() {return password;}
 
-    public void setGrantType(String grantType) {
-        this.grantType = grantType;
-    }
+    public void setPassword(String password) {this.password = password;}
 
-    public String getUsername() {
-        return username;
-    }
+    public String getToken() {return token;}
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    public void setToken(String token) {this.token = token;}
 
-    public String getPassword() {
-        return password;
-    }
+    public Date getExpiration() {return expiration;}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-    public Date getExpiration() {
-        return expiration;
-    }
-
-    public void setExpiration(Date expiration) {
-        this.expiration = expiration;
-    }
+    public void setExpiration(Date expiration) {this.expiration = expiration;}
 }

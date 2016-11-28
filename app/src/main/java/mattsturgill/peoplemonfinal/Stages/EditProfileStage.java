@@ -13,6 +13,11 @@ import mattsturgill.peoplemonfinal.Riggers.SlideRigger;
 public class EditProfileStage extends IndexedStage {
     private final SlideRigger rigger;
 
+    public EditProfileStage(Application context) {
+        super(EditProfileStage.class.getName());
+        this.rigger = new SlideRigger(context);
+    }
+
     @Override
     public int getLayoutId() {
         return R.layout.edit_profile_view;
@@ -21,11 +26,6 @@ public class EditProfileStage extends IndexedStage {
     @Override
     public Rigger getRigger() {
         return rigger;
-    }
-
-    public EditProfileStage(Application context) {
-        super(MapStage.class.getName());
-        this.rigger = new SlideRigger(context);
     }
 
     public EditProfileStage() {

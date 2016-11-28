@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -32,10 +33,12 @@ public class NearView extends LinearLayout {
     @Bind(R.id.nearby_recycler)
     RecyclerView nearbyRecyclerView;
 
-    public NearView(Context context, AttributeSet attrs, NearbyAdapter nearbyAdapter) {
+    @Bind(R.id.list_near_title)
+    TextView nearByListTitle;
+
+    public NearView(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
-        this.nearbyAdapter = nearbyAdapter;
     }
 
     @Override
@@ -55,18 +58,15 @@ public class NearView extends LinearLayout {
         restClient.getApiService().nearBy(Constants.radiusInMeters).enqueue(new Callback<User[]>() {
             @Override
             public void onResponse(Call<User[]> call, Response<User[]> response) {
-                // Is the server response between 200 to 299
                 if (response.isSuccessful()) {
-                    nearbyAdapter.nearbyUsers = new ArrayList<>(Arrays.asList(response.body()));
-                    for (User user : nearbyAdapter.nearbyUsers) {
-
+                    nearbyAdapter.nearUsers = new ArrayList<>(Arrays.asList(response.body()));
+                    for (User user : nearbyAdapter.nearUsers) {
                         nearbyAdapter.notifyDataSetChanged();
                     }
                 } else {
                     Toast.makeText(context, R.string.profile_info_error + ": " + response.code(), Toast.LENGTH_LONG).show();
                 }
             }
-
             @Override
             public void onFailure(Call<User[]> call, Throwable t) {
                 Toast.makeText(context, R.string.profile_info_error, Toast.LENGTH_LONG).show();

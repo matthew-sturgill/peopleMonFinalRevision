@@ -13,6 +13,13 @@ import mattsturgill.peoplemonfinal.Riggers.SlideRigger;
 public class NearStage extends IndexedStage {
     private final SlideRigger rigger;
 
+    public NearStage(Application context) {
+        super(NearStage.class.getName());
+        this.rigger = new SlideRigger(context);
+    }
+
+    public NearStage() {this(PeoplemonApplication.getInstance());}
+
     @Override
     public int getLayoutId() {
         return R.layout.near_view;
@@ -20,11 +27,4 @@ public class NearStage extends IndexedStage {
 
     @Override
     public Rigger getRigger() {return rigger;}
-
-    public NearStage(Application context) {
-        super(NearStage.class.getName());
-        this.rigger = new SlideRigger(context);
-    }
-
-    public NearStage() {this(PeoplemonApplication.getInstance());}
 }
