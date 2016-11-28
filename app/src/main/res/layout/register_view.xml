@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mattsturgill.peoplemonfinal.Views.RegisterView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/email_address_"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:ems="10"
+        android:hint="@string/e_mail_address"
+        android:inputType="textEmailAddress"/>
+    <EditText
+        android:id="@+id/user_name"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:ems="10"
+        android:hint="@string/fullName"
+        android:inputType="textPersonName"/>
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPassword"/>
+
+    <EditText
+        android:id="@+id/confirm_password"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:ems="10"
+        android:hint="@string/confirm_password"
+        android:inputType="textPassword"/>
+
+    <Button
+        android:id="@+id/register_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/register"/>
+
+    <ProgressBar
+        android:id="@+id/spinner"
+        style="@style/Base.Widget.AppCompat.ProgressBar"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="center_horizontal"
+        android:visibility="gone"/>
+
+</mattsturgill.peoplemonfinal.Views.RegisterView>

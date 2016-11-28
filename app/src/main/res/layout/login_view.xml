@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mattsturgill.peoplemonfinal.Views.LoginView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="@string/e_mail_address"
+        android:ems="10"
+        android:id="@+id/login_user_name_ET"
+        android:layout_gravity="center_horizontal"/>
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="@string/password"
+        android:ems="10"
+        android:id="@+id/login_password_ET"
+        android:layout_gravity="center_horizontal"/>
+
+    <Button
+        android:text="@string/login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/login_button"
+        android:layout_gravity="center_horizontal"/>
+
+    <Button
+        android:text="@string/register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/login_register_button"
+        android:layout_gravity="center_horizontal"/>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/pokeball"
+        android:id="@+id/imageView"/>
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        style="@style/Base.Widget.AppCompat.ProgressBar"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/spinner"
+        android:visibility="gone"/>
+
+
+</mattsturgill.peoplemonfinal.Views.LoginView>
