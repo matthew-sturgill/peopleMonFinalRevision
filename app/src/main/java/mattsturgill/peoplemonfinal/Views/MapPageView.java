@@ -130,7 +130,7 @@ public class MapPageView extends RelativeLayout implements OnMapReadyCallback,
         try {
             mMap.setMyLocationEnabled(true);
         } catch (SecurityException e) {
-            Toast.makeText(context, R.string.location_failed, Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, R.string.location_services_failed, Toast.LENGTH_SHORT).show();
         }
 
         mMap.clear();
@@ -145,16 +145,16 @@ public class MapPageView extends RelativeLayout implements OnMapReadyCallback,
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(context, R.string.caught_user, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, R.string.caught_a_new_peoplemon, Toast.LENGTH_SHORT).show();
                     marker.remove();
                 } else {
-                    Toast.makeText(context, R.string.cant_catch, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, R.string.unable_to_catch_yourself, Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(context, R.string.user_got_away, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, R.string.unable_to_catch_user, Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -168,7 +168,7 @@ public class MapPageView extends RelativeLayout implements OnMapReadyCallback,
             @Override
             public void onResponse(Call<User[]> call, Response<User[]> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(context, R.string.checkinNearBy, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, R.string.checking_for_nearby_peoplemon, Toast.LENGTH_SHORT).show();
                     peopleMon = new ArrayList<>(Arrays.asList(response.body()));
 
                     for (final User user : peopleMon) {
@@ -204,7 +204,7 @@ public class MapPageView extends RelativeLayout implements OnMapReadyCallback,
             }
             @Override
             public void onFailure(Call<User[]> call, Throwable t) {
-                Toast.makeText(context, R.string.find_user_failed, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, R.string.failed_to_find_users, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -234,13 +234,13 @@ public class MapPageView extends RelativeLayout implements OnMapReadyCallback,
                     checkForNearby();
 
                 } else {
-                    Toast.makeText(context, R.string.check_in_failed, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, R.string.failed_check_in, Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(context, R.string.check_in_failed, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, R.string.failed_check_in, Toast.LENGTH_SHORT).show();
             }
         });
     }

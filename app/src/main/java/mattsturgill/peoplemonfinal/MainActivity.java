@@ -173,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(context, R.string.failure_user_info, Toast.LENGTH_LONG).show();
+                Toast.makeText(context, R.string.failed_to_receive_user_info, Toast.LENGTH_LONG).show();
             }
         });
     }

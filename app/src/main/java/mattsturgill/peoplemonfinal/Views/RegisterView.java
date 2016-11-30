@@ -82,7 +82,7 @@ public class RegisterView extends LinearLayout{
             Toast.makeText(context, R.string.valid_email, Toast.LENGTH_LONG).show();
 
         } else if (!password1.equals(password2)) {
-            Toast.makeText(context, context.getResources().getString(R.string.passwords_dont_match), Toast.LENGTH_LONG).show();
+            Toast.makeText(context, context.getResources().getString(R.string.password_mismatch), Toast.LENGTH_LONG).show();
         } else {
             registerButton.setEnabled(false);
             spinner.setVisibility(VISIBLE);
